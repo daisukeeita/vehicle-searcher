@@ -1,0 +1,299 @@
+package com.javv.vehicle.domain.vehicle;
+
+/**
+ * The information of the vehicle from the third-party API.
+ */
+public class VehicleInformation {
+
+  private String historicVehicle;
+  private int equivalentInertia;
+  private String fuelType;
+  private String tractionType;
+  private int numberOfAxes;
+  private String modelYear;
+  private int engineCapacity;
+  private String category;
+  private String categoryType;
+  private String chassis;
+  private String engine;
+  private String mvFileNumber;
+  private String circulationDate;
+  private String color;
+  private String plateNumber;
+  private String manufacturer;
+  private String brand;
+  private int mileage;
+  private String vin;
+  private String turbo;
+  private String presenceOfCatalyticConverter;
+  private int maximumTotalWeight;
+  private String dateFirstRegistration;
+
+  /**
+   * Protected default constructor of class.
+   */
+  protected VehicleInformation() {
+  }
+
+  /**
+   * Constructs a new {@code VehicleInformation}.
+   *
+   * @param historicVehicle              The history of the vehicle.
+   * @param equivalentInertia            The equivalent inertia of the vehicle.
+   * @param fuelType                     The fuel type of the vehicle.
+   * @param tractionType                 The traction type of the vehicle.
+   * @param numberOfAxes                 The number of axes of the vehicle.
+   * @param modelYear                    The model year of the vehicle.
+   * @param engineCapacity               The engine capacity of the vehicle.
+   * @param category                     The category of the vehicle.
+   * @param categoryType                 The category type of the vehicle.
+   * @param chassis                      The chassis of the vehicle.
+   * @param engine                       The engine of the vehicle.
+   * @param mvFileNumber                 The MV file number of the vehicle.
+   * @param circulationDate              The circulation date of the vehicle.
+   * @param color                        The color of the vehicle.
+   * @param plateNumber                  The plate number of the vehicle.
+   * @param manufacturer                 The manufacturer of the vehicle.
+   * @param brand                        The brand of the vehicle.
+   * @param mileage                      The mileage of the vehicle.
+   * @param vin                          The vin of the vehicle.
+   * @param turbo                        The turbo type of the vehicle.
+   * @param presenceOfCatalyticConverter The catalytic converter of the
+   *                                     vehicle.
+   * @param maximumTotalWeight           The maximum total weight of the vehicle.
+   * @param dateFirstRegistration        The first registration date of the
+   *                                     vehicle.
+   */
+  public VehicleInformation(
+      String historicVehicle,
+      int equivalentInertia,
+      String fuelType,
+      String tractionType,
+      int numberOfAxes,
+      String modelYear,
+      int engineCapacity,
+      String category,
+      String categoryType,
+      String chassis,
+      String engine,
+      String mvFileNumber,
+      String circulationDate,
+      String color,
+      String plateNumber,
+      String manufacturer,
+      String brand,
+      int mileage,
+      String vin,
+      String turbo,
+      String presenceOfCatalyticConverter,
+      int maximumTotalWeight,
+      String dateFirstRegistration) {
+    this.historicVehicle = historicVehicle;
+    this.equivalentInertia = equivalentInertia;
+    this.fuelType = fuelType;
+    this.tractionType = tractionType;
+    this.numberOfAxes = numberOfAxes;
+    this.modelYear = modelYear;
+    this.engineCapacity = engineCapacity;
+    this.category = category;
+    this.categoryType = categoryType;
+    this.chassis = chassis;
+    this.engine = engine;
+    this.mvFileNumber = mvFileNumber;
+    this.circulationDate = circulationDate;
+    this.color = color;
+    this.plateNumber = plateNumber;
+    this.manufacturer = manufacturer;
+    this.brand = brand;
+    this.mileage = mileage;
+    this.vin = vin;
+    this.turbo = turbo;
+    this.presenceOfCatalyticConverter = presenceOfCatalyticConverter;
+    this.maximumTotalWeight = maximumTotalWeight;
+    this.dateFirstRegistration = dateFirstRegistration;
+  }
+
+  public void setHistoricVehicle(String historicVehicle) {
+    this.historicVehicle = historicVehicle;
+  }
+
+  public void setEquivalentInertia(int equivalentInertia) {
+    this.equivalentInertia = equivalentInertia;
+  }
+
+  public void setFuelType(String fuelType) {
+    this.fuelType = fuelType;
+  }
+
+  public void setTractionType(String tractionType) {
+    this.tractionType = tractionType;
+  }
+
+  public void setNumberOfAxes(int numberOfAxes) {
+    this.numberOfAxes = numberOfAxes;
+  }
+
+  public void setModelYear(String modelYear) {
+    this.modelYear = modelYear;
+  }
+
+  public void setEngineCapacity(int engineCapacity) {
+    this.engineCapacity = engineCapacity;
+  }
+
+  public void setCategory(String category) {
+    this.category = category;
+  }
+
+  public void setCategoryType(String categoryType) {
+    this.categoryType = categoryType;
+  }
+
+  public void setChassis(String chassis) {
+    this.chassis = chassis;
+  }
+
+  public void setEngine(String engine) {
+    this.engine = engine;
+  }
+
+  public void setMvFileNumber(String mvFileNumber) {
+    this.mvFileNumber = mvFileNumber;
+  }
+
+  public void setCirculationDate(String circulationDate) {
+    this.circulationDate = circulationDate;
+  }
+
+  public void setColor(String color) {
+    this.color = color;
+  }
+
+  public void setPlateNumber(String plateNumber) {
+    this.plateNumber = plateNumber;
+  }
+
+  public void setManufacturer(String manufacturer) {
+    this.manufacturer = manufacturer;
+  }
+
+  public void setBrand(String brand) {
+    this.brand = brand;
+  }
+
+  public void setMileage(int mileage) {
+    this.mileage = mileage;
+  }
+
+  public void setVin(String vin) {
+    this.vin = vin;
+  }
+
+  public void setTurbo(String turbo) {
+    this.turbo = turbo;
+  }
+
+  public void setPresenceOfCatalyticConverter(String presenceOfCatalyticConverter) {
+    this.presenceOfCatalyticConverter = presenceOfCatalyticConverter;
+  }
+
+  public void setMaximumTotalWeight(int maximumTotalWeight) {
+    this.maximumTotalWeight = maximumTotalWeight;
+  }
+
+  public void setDateFirstRegistration(String dateFirstRegistration) {
+    this.dateFirstRegistration = dateFirstRegistration;
+  }
+
+  public String getHistoricVehicle() {
+    return historicVehicle;
+  }
+
+  public int getEquivalentIntertia() {
+    return equivalentInertia;
+  }
+
+  public String getFuelType() {
+    return fuelType;
+  }
+
+  public String getTractionType() {
+    return tractionType;
+  }
+
+  public int getNumberOfAxes() {
+    return numberOfAxes;
+  }
+
+  public String getModelYear() {
+    return modelYear;
+  }
+
+  public int getEngineCapcity() {
+    return engineCapacity;
+  }
+
+  public String getCategory() {
+    return category;
+  }
+
+  public String getCategoryType() {
+    return categoryType;
+  }
+
+  public String getChassis() {
+    return chassis;
+  }
+
+  public String getEngine() {
+    return engine;
+  }
+
+  public String getMvFileNumber() {
+    return mvFileNumber;
+  }
+
+  public String getCirculationDate() {
+    return circulationDate;
+  }
+
+  public String getColor() {
+    return color;
+  }
+
+  public String getPlateNumber() {
+    return plateNumber;
+  }
+
+  public String getManufacturer() {
+    return manufacturer;
+  }
+
+  public String getBrand() {
+    return brand;
+  }
+
+  public int getMileage() {
+    return mileage;
+  }
+
+  public String getVin() {
+    return vin;
+  }
+
+  public String getTurbo() {
+    return turbo;
+  }
+
+  public String getPresenceOfCatalyticConverter() {
+    return presenceOfCatalyticConverter;
+  }
+
+  public int getMaximumTotalWeight() {
+    return maximumTotalWeight;
+  }
+
+  public String getDateFirstRegistration() {
+    return dateFirstRegistration;
+  }
+}
