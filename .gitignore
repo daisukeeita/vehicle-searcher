@@ -1,0 +1,7 @@
+# BUILD ARTIFACTS
+target/
+
+# IDE FILES 
+.settings/
+.project
+.classpath
