@@ -30,9 +30,9 @@ public class VehicleInformation {
   private String dateFirstRegistration;
 
   /**
-   * Protected default constructor of class.
+   * Default constructor of class.
    */
-  protected VehicleInformation() {
+  public VehicleInformation() {
   }
 
   /**
@@ -296,4 +296,34 @@ public class VehicleInformation {
   public String getDateFirstRegistration() {
     return dateFirstRegistration;
   }
+
+  @Override
+  public String toString() {
+    return "VehicleInformation {"
+        + "\n\thistoricVehicle: " + historicVehicle
+        + ",\n\tequivalentInertia:" + equivalentInertia
+        + ",\t\n fuelType=" + fuelType
+        + ",\t\n tractionType=" + tractionType
+        + ",\t\n numberOfAxes=" + numberOfAxes
+        + ",\t\n modelYear=" + modelYear
+        + ",\t\n engineCapacity=" + engineCapacity
+        + ",\t\n category=" + category
+        + ",\t\n categoryType=" + categoryType
+        + ",\t\n chassis=" + chassis
+        + ",\t\n engine=" + engine
+        + ",\t\n mvFileNumber=" + mvFileNumber
+        + ",\t\n circulationDate=" + circulationDate
+        + ",\t\n color=" + color
+        + ",\t\n plateNumber=" + plateNumber
+        + ",\t\n manufacturer=" + manufacturer
+        + ",\t\n brand=" + brand
+        + ",\t\n mileage=" + mileage
+        + ",\t\n vin=" + vin
+        + ",\t\n turbo=" + turbo
+        + ",\t\n presenceOfCatalyticConverter=" + presenceOfCatalyticConverter
+        + ",\t\n maximumTotalWeight=" + maximumTotalWeight
+        + ",\t\n dateFirstRegistration=" + dateFirstRegistration
+        + "\t\n}";
+  }
+
 }
