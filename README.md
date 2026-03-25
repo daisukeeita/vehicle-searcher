@@ -24,6 +24,7 @@ database.
 - Created DTO for requesting a vehicle detail from the third-party API.
 - Created DTO for sending a filtered vehicle detail to the client.
 - Created object to capture raw data from the response of the third-party API.
+- Added Jackson Annotations to capture raw key name from third-part API.
 
 ### To-Do
 
