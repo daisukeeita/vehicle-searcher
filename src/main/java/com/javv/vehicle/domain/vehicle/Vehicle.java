@@ -1,11 +1,19 @@
 package com.javv.vehicle.domain.vehicle;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class Vehicle {
 
+  @JsonProperty("Inspection_ID")
   private String inspectionId;
+
+  @JsonProperty("Purpose")
   private String purpose;
 
+  @JsonProperty("Vehicle_Information")
   private VehicleInformation vehicleInformation;
+
+  @JsonProperty("Test_Limits")
   private VehicleTestLimits vehicleTestLimits;
 
   public Vehicle(
@@ -34,4 +42,15 @@ public class Vehicle {
   public VehicleTestLimits getVehicleTestLimits() {
     return vehicleTestLimits;
   }
+
+  @Override
+  public String toString() {
+    return "Vehicle {"
+        + "\n\tinspectionId: " + inspectionId
+        + ",\n\tpurpose: " + purpose
+        + ",\n\t" + vehicleInformation
+        + ",\n\t" + vehicleTestLimits
+        + "\n}";
+  }
+
 }
