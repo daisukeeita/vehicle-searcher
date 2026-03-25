@@ -1,20 +1,43 @@
 package com.javv.vehicle.domain.vehicle;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 /**
  * The reference test limit of a vehicle to be tested.
  */
 public class VehicleTestLimits {
 
+  @JsonProperty("light_intensity")
   private String lightIntensity;
+
+  @JsonProperty("brake_service_eff")
   private String brakeServiceEfficiency;
+
+  @JsonProperty("brake_parking_eff")
   private String brakeParkingEfficiency;
+
+  @JsonProperty("brake_service_diff")
   private String brakeServiceDifference;
+
+  @JsonProperty("sideslip_deviation")
   private String sideslipDeviation;
+
+  @JsonProperty("suspension_deviation")
   private String suspensionDeviation;
+
+  @JsonProperty("speed_deviation")
   private String speedDeviation;
+
+  @JsonProperty("sound_level")
   private String soundLevel;
+
+  @JsonProperty("emission_hc")
   private String emissionHc;
+
+  @JsonProperty("emission_co")
   private String emissionCo;
+
+  @JsonProperty("opacity_k")
   private String opacityK;
 
   /**
@@ -167,4 +190,22 @@ public class VehicleTestLimits {
   public String getOpacityK() {
     return opacityK;
   }
+
+  @Override
+  public String toString() {
+    return "VehicleTestLimits {"
+        + "\n\tlightIntensity: " + lightIntensity
+        + ",\n\tbrakeServiceEfficiency: " + brakeServiceEfficiency
+        + ",\n\tbrakeParkingEfficiency: " + brakeParkingEfficiency
+        + ",\n\tbrakeServiceDifference: " + brakeServiceDifference
+        + ",\n\tsideslipDeviation: " + sideslipDeviation
+        + ",\n\tsuspensionDeviation: " + suspensionDeviation
+        + ",\n\tspeedDeviation: " + speedDeviation
+        + ",\n\tsoundLevel: " + soundLevel
+        + ",\n\temissionHc: " + emissionHc
+        + ",\n\temissionCo: " + emissionCo
+        + ",\n\topacityK: " + opacityK
+        + "\n}";
+  }
+
 }
