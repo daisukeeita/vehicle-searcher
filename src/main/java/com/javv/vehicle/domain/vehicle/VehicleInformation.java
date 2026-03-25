@@ -1,32 +1,79 @@
 package com.javv.vehicle.domain.vehicle;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 /**
  * The information of the vehicle from the third-party API.
  */
 public class VehicleInformation {
 
+  @JsonProperty("Historic_Vehicle")
   private String historicVehicle;
-  private int equivalentInertia;
+
+  @JsonProperty("Equivalent_Inertia")
+  private Integer equivalentInertia;
+
+  @JsonProperty("Fuel_Type")
   private String fuelType;
+
+  @JsonProperty("Traction_Type")
   private String tractionType;
-  private int numberOfAxes;
+
+  @JsonProperty("Number_Of_Axes")
+  private Integer numberOfAxes;
+
+  @JsonProperty("Model_Year")
   private String modelYear;
-  private int engineCapacity;
+
+  @JsonProperty("Engine_Capacity")
+  private Integer engineCapacity;
+
+  @JsonProperty("Category")
   private String category;
+
+  @JsonProperty("Category_Type")
   private String categoryType;
+
+  @JsonProperty("Chassis")
   private String chassis;
+
+  @JsonProperty("Engine")
   private String engine;
+
+  @JsonProperty("MV_File_Number")
   private String mvFileNumber;
+
+  @JsonProperty("Circulation_Date")
   private String circulationDate;
+
+  @JsonProperty("Color")
   private String color;
+
+  @JsonProperty("Licence_Plate")
   private String plateNumber;
+
+  @JsonProperty("Manufacturer")
   private String manufacturer;
+
+  @JsonProperty("Brand")
   private String brand;
-  private int mileage;
+
+  @JsonProperty("Mileage")
+  private Integer mileage;
+
+  @JsonProperty("VIN")
   private String vin;
+
+  @JsonProperty("Turbo")
   private String turbo;
+
+  @JsonProperty("Presence_Of_Catalytic_Converter")
   private String presenceOfCatalyticConverter;
-  private int maximumTotalWeight;
+
+  @JsonProperty("Maximum_Total_Weight")
+  private Integer maximumTotalWeight;
+
+  @JsonProperty("Date_First_Registration")
   private String dateFirstRegistration;
 
   /**
@@ -66,12 +113,12 @@ public class VehicleInformation {
    */
   public VehicleInformation(
       String historicVehicle,
-      int equivalentInertia,
+      Integer equivalentInertia,
       String fuelType,
       String tractionType,
-      int numberOfAxes,
+      Integer numberOfAxes,
       String modelYear,
-      int engineCapacity,
+      Integer engineCapacity,
       String category,
       String categoryType,
       String chassis,
@@ -82,11 +129,11 @@ public class VehicleInformation {
       String plateNumber,
       String manufacturer,
       String brand,
-      int mileage,
+      Integer mileage,
       String vin,
       String turbo,
       String presenceOfCatalyticConverter,
-      int maximumTotalWeight,
+      Integer maximumTotalWeight,
       String dateFirstRegistration) {
     this.historicVehicle = historicVehicle;
     this.equivalentInertia = equivalentInertia;
@@ -117,7 +164,7 @@ public class VehicleInformation {
     this.historicVehicle = historicVehicle;
   }
 
-  public void setEquivalentInertia(int equivalentInertia) {
+  public void setEquivalentInertia(Integer equivalentInertia) {
     this.equivalentInertia = equivalentInertia;
   }
 
@@ -129,7 +176,7 @@ public class VehicleInformation {
     this.tractionType = tractionType;
   }
 
-  public void setNumberOfAxes(int numberOfAxes) {
+  public void setNumberOfAxes(Integer numberOfAxes) {
     this.numberOfAxes = numberOfAxes;
   }
 
@@ -137,7 +184,7 @@ public class VehicleInformation {
     this.modelYear = modelYear;
   }
 
-  public void setEngineCapacity(int engineCapacity) {
+  public void setEngineCapacity(Integer engineCapacity) {
     this.engineCapacity = engineCapacity;
   }
 
@@ -181,7 +228,7 @@ public class VehicleInformation {
     this.brand = brand;
   }
 
-  public void setMileage(int mileage) {
+  public void setMileage(Integer mileage) {
     this.mileage = mileage;
   }
 
@@ -197,7 +244,7 @@ public class VehicleInformation {
     this.presenceOfCatalyticConverter = presenceOfCatalyticConverter;
   }
 
-  public void setMaximumTotalWeight(int maximumTotalWeight) {
+  public void setMaximumTotalWeight(Integer maximumTotalWeight) {
     this.maximumTotalWeight = maximumTotalWeight;
   }
 
@@ -209,7 +256,7 @@ public class VehicleInformation {
     return historicVehicle;
   }
 
-  public int getEquivalentIntertia() {
+  public Integer getEquivalentIntertia() {
     return equivalentInertia;
   }
 
@@ -221,7 +268,7 @@ public class VehicleInformation {
     return tractionType;
   }
 
-  public int getNumberOfAxes() {
+  public Integer getNumberOfAxes() {
     return numberOfAxes;
   }
 
@@ -229,7 +276,7 @@ public class VehicleInformation {
     return modelYear;
   }
 
-  public int getEngineCapcity() {
+  public Integer getEngineCapcity() {
     return engineCapacity;
   }
 
@@ -273,7 +320,7 @@ public class VehicleInformation {
     return brand;
   }
 
-  public int getMileage() {
+  public Integer getMileage() {
     return mileage;
   }
 
@@ -289,7 +336,7 @@ public class VehicleInformation {
     return presenceOfCatalyticConverter;
   }
 
-  public int getMaximumTotalWeight() {
+  public Integer getMaximumTotalWeight() {
     return maximumTotalWeight;
   }
 
@@ -301,29 +348,29 @@ public class VehicleInformation {
   public String toString() {
     return "VehicleInformation {"
         + "\n\thistoricVehicle: " + historicVehicle
-        + ",\n\tequivalentInertia:" + equivalentInertia
-        + ",\t\n fuelType=" + fuelType
-        + ",\t\n tractionType=" + tractionType
-        + ",\t\n numberOfAxes=" + numberOfAxes
-        + ",\t\n modelYear=" + modelYear
-        + ",\t\n engineCapacity=" + engineCapacity
-        + ",\t\n category=" + category
-        + ",\t\n categoryType=" + categoryType
-        + ",\t\n chassis=" + chassis
-        + ",\t\n engine=" + engine
-        + ",\t\n mvFileNumber=" + mvFileNumber
-        + ",\t\n circulationDate=" + circulationDate
-        + ",\t\n color=" + color
-        + ",\t\n plateNumber=" + plateNumber
-        + ",\t\n manufacturer=" + manufacturer
-        + ",\t\n brand=" + brand
-        + ",\t\n mileage=" + mileage
-        + ",\t\n vin=" + vin
-        + ",\t\n turbo=" + turbo
-        + ",\t\n presenceOfCatalyticConverter=" + presenceOfCatalyticConverter
-        + ",\t\n maximumTotalWeight=" + maximumTotalWeight
-        + ",\t\n dateFirstRegistration=" + dateFirstRegistration
-        + "\t\n}";
+        + ",\n\tequivalentInertia: " + equivalentInertia
+        + ",\n\tfuelType: " + fuelType
+        + ",\n\ttractionType: " + tractionType
+        + ",\n\tnumberOfAxes: " + numberOfAxes
+        + ",\n\tmodelYear: " + modelYear
+        + ",\n\tengineCapacity: " + engineCapacity
+        + ",\n\tcategory: " + category
+        + ",\n\tcategoryType: " + categoryType
+        + ",\n\tchassis: " + chassis
+        + ",\n\tengine: " + engine
+        + ",\n\tmvFileNumber: " + mvFileNumber
+        + ",\n\tcirculationDate: " + circulationDate
+        + ",\n\tcolor: " + color
+        + ",\n\tplateNumber: " + plateNumber
+        + ",\n\tmanufacturer: " + manufacturer
+        + ",\n\tbrand: " + brand
+        + ",\n\tmileage: " + mileage
+        + ",\n\tvin: " + vin
+        + ",\n\tturbo: " + turbo
+        + ",\n\tpresenceOfCatalyticConverter: " + presenceOfCatalyticConverter
+        + ",\n\tmaximumTotalWeight: " + maximumTotalWeight
+        + ",\n\tdateFirstRegistration: " + dateFirstRegistration
+        + "\n}";
   }
 
 }
