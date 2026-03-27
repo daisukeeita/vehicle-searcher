@@ -13,7 +13,9 @@ import javax.net.ssl.SSLContext;
 import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
 
+import com.javv.vehicle.domain.vehicle.Vehicle;
 import com.javv.vehicle.domain.vehicle.VehicleRequestDto;
+import com.javv.vehicle.domain.vehicle.VehicleResponseDto;
 
 import io.github.cdimascio.dotenv.Dotenv;
 import tools.jackson.databind.ObjectMapper;
@@ -65,10 +67,37 @@ public class ApiService {
 
       HttpResponse<String> response = httpClient.send(request, BodyHandlers.ofString());
 
-      System.out.println("Status: " + response.statusCode());
-      System.out.println("Headers: " + response.headers().allValues("Content-Type"));
-      System.out.println("Body: " + response.body());
+      Vehicle vehicle = objectMapper.readValue(response.body(), Vehicle.class);
 
+      VehicleResponseDto vehicleResponseDto = new VehicleResponseDto();
+      vehicleResponseDto.setLastInspectionId(
+          vehicle.getInspectionId());
+      vehicleResponseDto.setMvFileNumber(
+          vehicle.getVehicleInformation().getMvFileNumber());
+      vehicleResponseDto.setPlateNumber(
+          vehicle.getVehicleInformation().getPlateNumber());
+      vehicleResponseDto.setChassisNumber(
+          vehicle.getVehicleInformation().getChassis());
+      vehicleResponseDto.setEngineNumber(
+          vehicle.getVehicleInformation().getEngine());
+      vehicleResponseDto.setBrand(
+          vehicle.getVehicleInformation().getBrand());
+      vehicleResponseDto.setManufacturer(
+          vehicle.getVehicleInformation().getManufacturer());
+      vehicleResponseDto.setFuelType(
+          vehicle.getVehicleInformation().getFuelType());
+      vehicleResponseDto.setCategoryType(
+          vehicle.getVehicleInformation().getCategoryType());
+      vehicleResponseDto.setColor(
+          vehicle.getVehicleInformation().getColor());
+      vehicleResponseDto.setEngineCapacity(
+          vehicle.getVehicleInformation().getEngineCapcity().toString());
+      vehicleResponseDto.setMaximumTotalWeigh(
+          vehicle.getVehicleInformation().getMaximumTotalWeight().toString());
+      vehicleResponseDto.setModelYear(
+          vehicle.getVehicleInformation().getModelYear());
+      vehicleResponseDto.setFirstRegistrationDate(
+          vehicle.getVehicleInformation().getDateFirstRegistration());
     } catch (Exception e) {
       e.printStackTrace();
     }
