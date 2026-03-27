@@ -1,15 +1,26 @@
 package com.javv.vehicle.domain.vehicle;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 /**
  * DTO class for API request.
  */
 public class VehicleRequestDto {
 
-  private String chassisNumber;
-  private String engineNumber;
-  private String vinNumber;
-  private String plateNumber;
-  private String mvFileNumber;
+  @JsonProperty("chassis_no")
+  private String chassisNumber = "";
+
+  @JsonProperty("engine_no")
+  private String engineNumber = "";
+
+  @JsonProperty("vin_no")
+  private String vinNumber = "";
+
+  @JsonProperty("plate_no")
+  private String plateNumber = "";
+
+  @JsonProperty("mv_file_no")
+  private String mvFileNumber = "";
 
   /**
    * Constructs a new {@code VehicleRequestDto}.
@@ -18,23 +29,43 @@ public class VehicleRequestDto {
   }
 
   public void setChassisNumber(String chassisNumber) {
-    this.chassisNumber = chassisNumber;
+    if (chassisNumber == null || chassisNumber.trim().isEmpty()) {
+      this.chassisNumber = "";
+    } else {
+      this.chassisNumber = chassisNumber;
+    }
   }
 
   public void setEngineNumber(String engineNumber) {
-    this.engineNumber = engineNumber;
+    if (engineNumber == null || engineNumber.trim().isEmpty()) {
+      this.engineNumber = "";
+    } else {
+      this.engineNumber = engineNumber;
+    }
   }
 
   public void setVinNumber(String vinNumber) {
-    this.vinNumber = vinNumber;
+    if (vinNumber == null || vinNumber.trim().isEmpty()) {
+      this.vinNumber = "";
+    } else {
+      this.vinNumber = vinNumber;
+    }
   }
 
   public void setPlateNumber(String plateNumber) {
-    this.plateNumber = plateNumber;
+    if (plateNumber == null || plateNumber.trim().isEmpty()) {
+      this.plateNumber = "";
+    } else {
+      this.plateNumber = plateNumber;
+    }
   }
 
   public void setMvFileNumber(String mvFileNumber) {
-    this.mvFileNumber = mvFileNumber;
+    if (mvFileNumber == null || mvFileNumber.trim().isEmpty()) {
+      this.mvFileNumber = "";
+    } else {
+      this.mvFileNumber = mvFileNumber;
+    }
   }
 
   public String getChassisNumber() {
