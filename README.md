@@ -14,7 +14,7 @@ database.
 ## PROJECT STATUS AND PROGRESS
 | Task | Status | Notes |
 |:--: | :--: | :--: |
-| Core Feature | Progress | Finished creating the classes needed for vehicle |
+| Core Feature | Progress | Created an initial server. |
 | User Authentication | To be decided | Currently seeing the pros of having user authentication for this application |
 | API Documentation | To Do | Planned for the next version |
 | README Content | Progress | Need to update tasks and progress |
@@ -25,9 +25,14 @@ database.
 - Created DTO for sending a filtered vehicle detail to the client.
 - Created object to capture raw data from the response of the third-party API.
 - Added Jackson Annotations to capture raw key name from third-part API.
+- Implemented the HttpClient.
+- Tested the created objects.
+- Implemented Jackson for converting received JSON data.
+- Created the initial server.
 
 ### To-Do
-
-- Test the created objects.
-- Implement the HttpClient
-- Implement Jackson
+- Create a server that accepts request and sends the result 
+    - success and failed results
+- Control the threading pool of the server.
+- Convert sending the request from synchronous to asynchronous state.
+- Create an exception class and handle the messages it'll throw.
