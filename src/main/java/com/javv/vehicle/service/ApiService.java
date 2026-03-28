@@ -13,34 +13,38 @@ import javax.net.ssl.SSLContext;
 import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
 
-import com.javv.vehicle.domain.vehicle.Vehicle;
 import com.javv.vehicle.domain.vehicle.VehicleRequestDto;
-import com.javv.vehicle.domain.vehicle.VehicleResponseDto;
 
 import io.github.cdimascio.dotenv.Dotenv;
 import tools.jackson.databind.ObjectMapper;
 
+/**
+ * The class for connecting to the third-part API link. Disabled the SSL Certifactes to test the
+ * JSON data.
+ */
 public class ApiService {
 
   private final Dotenv dotenv = Dotenv.load();
   private final String apiUrl = dotenv.get("API_URL");
   private final ObjectMapper objectMapper = new ObjectMapper();
 
+  /** Unsafe connection to the link. Will modify it in the future. */
   private HttpClient createUnsafeClient() {
     try {
-      TrustManager[] trustAllCerts = new TrustManager[] {
-          new X509TrustManager() {
-            public java.security.cert.X509Certificate[] getAcceptedIssuers() {
-              return null;
-            }
+      TrustManager[] trustAllCerts =
+          new TrustManager[] {
+            new X509TrustManager() {
+              public java.security.cert.X509Certificate[] getAcceptedIssuers() {
+                return null;
+              }
 
-            public void checkClientTrusted(java.security.cert.X509Certificate[] certs, String authType) {
-            }
+              public void checkClientTrusted(
+                  java.security.cert.X509Certificate[] certs, String authType) {}
 
-            public void checkServerTrusted(java.security.cert.X509Certificate[] certs, String authType) {
+              public void checkServerTrusted(
+                  java.security.cert.X509Certificate[] certs, String authType) {}
             }
-          }
-      };
+          };
       SSLContext sslContext = SSLContext.getInstance("TLS");
       sslContext.init(null, trustAllCerts, new SecureRandom());
 
@@ -53,55 +57,56 @@ public class ApiService {
     }
   }
 
-  public void postRequest(VehicleRequestDto vehicleRequestDto) {
+  /**
+   * Method for POST request using the unsafe client connection.
+   *
+   * @param vehicleRequestDto The request body to be send.
+   */
+  public HttpResponse<String> postRequest(VehicleRequestDto vehicleRequestDto) {
     HttpClient httpClient = createUnsafeClient();
     String requestBody = objectMapper.writeValueAsString(vehicleRequestDto);
+    HttpResponse<String> response = null;
 
     try {
 
-      HttpRequest request = HttpRequest.newBuilder()
-          .uri(URI.create(apiUrl))
-          .headers("Content-Type", "application/json")
-          .POST(BodyPublishers.ofString(requestBody))
-          .build();
+      HttpRequest request =
+          HttpRequest.newBuilder()
+              .uri(URI.create(apiUrl))
+              .headers("Content-Type", "application/json")
+              .POST(BodyPublishers.ofString(requestBody))
+              .build();
 
-      HttpResponse<String> response = httpClient.send(request, BodyHandlers.ofString());
+      response = httpClient.send(request, BodyHandlers.ofString());
 
-      Vehicle vehicle = objectMapper.readValue(response.body(), Vehicle.class);
-
-      VehicleResponseDto vehicleResponseDto = new VehicleResponseDto();
-      vehicleResponseDto.setLastInspectionId(
-          vehicle.getInspectionId());
-      vehicleResponseDto.setMvFileNumber(
-          vehicle.getVehicleInformation().getMvFileNumber());
-      vehicleResponseDto.setPlateNumber(
-          vehicle.getVehicleInformation().getPlateNumber());
-      vehicleResponseDto.setChassisNumber(
-          vehicle.getVehicleInformation().getChassis());
-      vehicleResponseDto.setEngineNumber(
-          vehicle.getVehicleInformation().getEngine());
-      vehicleResponseDto.setBrand(
-          vehicle.getVehicleInformation().getBrand());
-      vehicleResponseDto.setManufacturer(
-          vehicle.getVehicleInformation().getManufacturer());
-      vehicleResponseDto.setFuelType(
-          vehicle.getVehicleInformation().getFuelType());
-      vehicleResponseDto.setCategoryType(
-          vehicle.getVehicleInformation().getCategoryType());
-      vehicleResponseDto.setColor(
-          vehicle.getVehicleInformation().getColor());
-      vehicleResponseDto.setEngineCapacity(
-          vehicle.getVehicleInformation().getEngineCapcity().toString());
-      vehicleResponseDto.setMaximumTotalWeigh(
-          vehicle.getVehicleInformation().getMaximumTotalWeight().toString());
-      vehicleResponseDto.setModelYear(
-          vehicle.getVehicleInformation().getModelYear());
-      vehicleResponseDto.setFirstRegistrationDate(
-          vehicle.getVehicleInformation().getDateFirstRegistration());
     } catch (Exception e) {
       e.printStackTrace();
     }
 
+    return response;
   }
 
+  // private VehicleResponseDto convertToDto(HttpResponse<String> response) {
+  //   Vehicle vehicle = objectMapper.readValue(response.body(), Vehicle.class);
+  //
+  //   VehicleResponseDto vehicleResponseDto = new VehicleResponseDto();
+  //   vehicleResponseDto.setLastInspectionId(vehicle.getInspectionId());
+  //   vehicleResponseDto.setMvFileNumber(vehicle.getVehicleInformation().getMvFileNumber());
+  //   vehicleResponseDto.setPlateNumber(vehicle.getVehicleInformation().getPlateNumber());
+  //   vehicleResponseDto.setChassisNumber(vehicle.getVehicleInformation().getChassis());
+  //   vehicleResponseDto.setEngineNumber(vehicle.getVehicleInformation().getEngine());
+  //   vehicleResponseDto.setBrand(vehicle.getVehicleInformation().getBrand());
+  //   vehicleResponseDto.setManufacturer(vehicle.getVehicleInformation().getManufacturer());
+  //   vehicleResponseDto.setFuelType(vehicle.getVehicleInformation().getFuelType());
+  //   vehicleResponseDto.setCategoryType(vehicle.getVehicleInformation().getCategoryType());
+  //   vehicleResponseDto.setColor(vehicle.getVehicleInformation().getColor());
+  //   vehicleResponseDto.setEngineCapacity(
+  //       vehicle.getVehicleInformation().getEngineCapcity().toString());
+  //   vehicleResponseDto.setMaximumTotalWeigh(
+  //       vehicle.getVehicleInformation().getMaximumTotalWeight().toString());
+  //   vehicleResponseDto.setModelYear(vehicle.getVehicleInformation().getModelYear());
+  //   vehicleResponseDto.setFirstRegistrationDate(
+  //       vehicle.getVehicleInformation().getDateFirstRegistration());
+  //
+  //   return vehicleResponseDto;
+  // }
 }
