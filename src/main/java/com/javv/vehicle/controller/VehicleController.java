@@ -11,9 +11,12 @@ import com.javv.vehicle.domain.vehicle.VehicleRequestDto;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 
+import tools.jackson.databind.ObjectMapper;
+
 public class VehicleController implements HttpHandler {
 
   private final VehicleRequestDto vehicleRequestDto = new VehicleRequestDto();
+  private final ObjectMapper objectMapper = new ObjectMapper();
 
   @Override
   public void handle(HttpExchange exchange) throws IOException {
@@ -42,9 +45,7 @@ public class VehicleController implements HttpHandler {
       }
     }
 
-    // System.out.println(vehicleRequestDto.toString());
-
-    String response = "This is the GET endpoint of the server.";
+    String response = objectMapper.writeValueAsString(vehicleRequestDto);
 
     exchange.sendResponseHeaders(200, response.length());
 
