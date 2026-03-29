@@ -1,5 +1,4 @@
 # VEHICLE SEARCHER
-
 A simulation for searching a vehicle. 
 It gives the details of the vehicle if it is officially registered to the
 database.
@@ -29,6 +28,7 @@ database.
 - Tested the created objects.
 - Implemented Jackson for converting received JSON data.
 - Created the initial server.
+- Initially handled the query of GET method.
 
 ### To-Do
 - Create a server that accepts request and sends the result 
