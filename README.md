@@ -31,6 +31,7 @@ database.
 - Initially handled the query of GET method.
 
 ### To-Do
+- Manipulate the QUERY string of GET method.
 - Create a server that accepts request and sends the result 
     - success and failed results
 - Control the threading pool of the server.
