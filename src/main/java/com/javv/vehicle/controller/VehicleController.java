@@ -3,9 +3,6 @@ package com.javv.vehicle.controller;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.net.URI;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
 
 import com.javv.vehicle.domain.vehicle.VehicleRequestDto;
 import com.sun.net.httpserver.HttpExchange;
@@ -31,18 +28,31 @@ public class VehicleController implements HttpHandler {
 
   private void handleGet(HttpExchange exchange) throws IOException {
     URI requestUri = exchange.getRequestURI();
-    String query = requestUri.getRawQuery();
+    String query = requestUri.getQuery();
 
-    Map<String, String> result = new HashMap<String, String>();
     String[] entry = query.split("=");
-    result.put(entry[0], entry[1]);
 
-    Set<String> keys = result.keySet();
+    String key = entry[0].length() > 1 ? entry[0] : "";
+    String value = entry[1].length() > 1 ? entry[1] : "";
 
-    for (String key : keys) {
-      if ("plateNo".equalsIgnoreCase(key)) {
-        vehicleRequestDto.setPlateNumber(result.get(key));
-      }
+    if ("plateNo".equalsIgnoreCase(key)) {
+      vehicleRequestDto.setPlateNumber(value);
+    }
+
+    if ("chassisNo".equalsIgnoreCase(key)) {
+      vehicleRequestDto.setChassisNumber(value);
+    }
+
+    if ("engineNo".equalsIgnoreCase(key)) {
+      vehicleRequestDto.setEngineNumber(value);
+    }
+
+    if ("vinNo".equalsIgnoreCase(key)) {
+      vehicleRequestDto.setVinNumber(value);
+    }
+
+    if ("mvFileNumber".equalsIgnoreCase(key)) {
+      vehicleRequestDto.setMvFileNumber(value);
     }
 
     String response = objectMapper.writeValueAsString(vehicleRequestDto);
