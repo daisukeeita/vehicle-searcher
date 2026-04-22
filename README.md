@@ -9,6 +9,7 @@ database.
 ## DEPENDENCIES
 - Jackson Databind
 - Junit5
+- DotENV
 
 ## PROJECT STATUS AND PROGRESS
 | Task | Status | Notes |
