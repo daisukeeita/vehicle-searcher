@@ -3,8 +3,11 @@ package com.javv.vehicle.controller;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.net.URI;
+import java.nio.charset.StandardCharsets;
 
+import com.javv.vehicle.domain.exception.ErrorResponse;
 import com.javv.vehicle.domain.vehicle.VehicleRequestDto;
+import com.javv.vehicle.exception.MethodException;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 
@@ -19,10 +22,17 @@ public class VehicleController implements HttpHandler {
   public void handle(HttpExchange exchange) throws IOException {
     String method = exchange.getRequestMethod();
 
-    if ("GET".equalsIgnoreCase(method)) {
-      handleGet(exchange);
-    } else {
-      exchange.sendResponseHeaders(405, -1);
+    try {
+      if ("GET".equalsIgnoreCase(method)) {
+        handleGet(exchange);
+      } else {
+        throw new MethodException("Method Not Allowed", 405);
+      }
+    } catch (MethodException e) {
+      ErrorResponse errorResponse = new ErrorResponse(e.getStatusCode(), e.getMessage());
+      String response = objectMapper.writeValueAsString(errorResponse);
+
+      throwException(exchange, e.getStatusCode(), response);
     }
   }
 
@@ -61,6 +71,16 @@ public class VehicleController implements HttpHandler {
 
     try (OutputStream os = exchange.getResponseBody()) {
       os.write(response.getBytes());
+    }
+  }
+
+  private void throwException(HttpExchange exchange, int statusCode, String message)
+      throws IOException {
+    byte[] response = message.getBytes(StandardCharsets.UTF_8);
+    exchange.getResponseHeaders().set("Content-Type", "application/json");
+    exchange.sendResponseHeaders(statusCode, response.length);
+    try (OutputStream outputStream = exchange.getResponseBody()) {
+      outputStream.write(response);
     }
   }
 }
