@@ -3,6 +3,7 @@ package com.javv.vehicle;
 import java.io.IOException;
 import java.net.InetSocketAddress;
 
+import com.javv.vehicle.controller.AuthController;
 import com.javv.vehicle.controller.VehicleController;
 import com.sun.net.httpserver.HttpServer;
 
@@ -14,6 +15,7 @@ public class Main {
     HttpServer server = HttpServer.create(socketAddress, 0);
 
     server.createContext("/", new VehicleController());
+    server.createContext("/auth", new AuthController());
 
     server.setExecutor(null);
     System.out.println("Server started on port 8080...");
