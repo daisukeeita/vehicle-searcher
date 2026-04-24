@@ -7,6 +7,7 @@ import java.nio.charset.StandardCharsets;
 
 import com.javv.vehicle.domain.exception.ErrorResponse;
 import com.javv.vehicle.domain.vehicle.VehicleRequestDto;
+import com.javv.vehicle.exception.InvalidQueryException;
 import com.javv.vehicle.exception.MethodException;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
@@ -33,6 +34,12 @@ public class VehicleController implements HttpHandler {
       String response = objectMapper.writeValueAsString(errorResponse);
 
       throwException(exchange, e.getStatusCode(), response);
+    } catch (InvalidQueryException exception) {
+      ErrorResponse errorResponse =
+          new ErrorResponse(exception.getStatusCode(), exception.getMessage());
+      String response = objectMapper.writeValueAsString(errorResponse);
+
+      throwException(exchange, exception.getStatusCode(), response);
     }
   }
 
@@ -45,28 +52,29 @@ public class VehicleController implements HttpHandler {
     String key = entry[0].length() > 1 ? entry[0] : "";
     String value = entry[1].length() > 1 ? entry[1] : "";
 
-    if ("plateNo".equalsIgnoreCase(key)) {
-      vehicleRequestDto.setPlateNumber(value);
-    }
-
-    if ("chassisNo".equalsIgnoreCase(key)) {
-      vehicleRequestDto.setChassisNumber(value);
-    }
-
-    if ("engineNo".equalsIgnoreCase(key)) {
-      vehicleRequestDto.setEngineNumber(value);
-    }
-
-    if ("vinNo".equalsIgnoreCase(key)) {
-      vehicleRequestDto.setVinNumber(value);
-    }
-
-    if ("mvFileNumber".equalsIgnoreCase(key)) {
-      vehicleRequestDto.setMvFileNumber(value);
+    switch (key) {
+      case "plateNo":
+        vehicleRequestDto.setPlateNumber(value);
+        break;
+      case "chassisNo":
+        vehicleRequestDto.setChassisNumber(value);
+        break;
+      case "engineNo":
+        vehicleRequestDto.setEngineNumber(value);
+        break;
+      case "vinNo":
+        vehicleRequestDto.setVinNumber(value);
+        break;
+      case "mvFileNumber":
+        vehicleRequestDto.setMvFileNumber(value);
+        break;
+      default:
+        throw new InvalidQueryException("Invalid Query Key Propery", 400);
     }
 
     String response = objectMapper.writeValueAsString(vehicleRequestDto);
 
+    exchange.getResponseHeaders().set("Content-Type", "application/json");
     exchange.sendResponseHeaders(200, response.length());
 
     try (OutputStream os = exchange.getResponseBody()) {
