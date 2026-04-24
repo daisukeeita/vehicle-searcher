@@ -28,6 +28,34 @@ public class ApiService {
   private final String apiUrl = dotenv.get("API_URL");
   private final ObjectMapper objectMapper = new ObjectMapper();
 
+  /**
+   * Method for POST request using the unsafe client connection.
+   *
+   * @param vehicleRequestDto The request body to be send.
+   */
+  public HttpResponse<String> postRequest(VehicleRequestDto vehicleRequestDto) {
+    HttpClient httpClient = createUnsafeClient();
+    String requestBody = objectMapper.writeValueAsString(vehicleRequestDto);
+    HttpResponse<String> response = null;
+
+    try {
+
+      HttpRequest request =
+          HttpRequest.newBuilder()
+              .uri(URI.create(apiUrl))
+              .headers("Content-Type", "application/json")
+              .POST(BodyPublishers.ofString(requestBody))
+              .build();
+
+      response = httpClient.send(request, BodyHandlers.ofString());
+
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+
+    return response;
+  }
+
   /** Unsafe connection to the link. Will modify it in the future. */
   private HttpClient createUnsafeClient() {
     try {
@@ -55,34 +83,6 @@ public class ApiService {
     } catch (Exception e) {
       throw new RuntimeException(e);
     }
-  }
-
-  /**
-   * Method for POST request using the unsafe client connection.
-   *
-   * @param vehicleRequestDto The request body to be send.
-   */
-  public HttpResponse<String> postRequest(VehicleRequestDto vehicleRequestDto) {
-    HttpClient httpClient = createUnsafeClient();
-    String requestBody = objectMapper.writeValueAsString(vehicleRequestDto);
-    HttpResponse<String> response = null;
-
-    try {
-
-      HttpRequest request =
-          HttpRequest.newBuilder()
-              .uri(URI.create(apiUrl))
-              .headers("Content-Type", "application/json")
-              .POST(BodyPublishers.ofString(requestBody))
-              .build();
-
-      response = httpClient.send(request, BodyHandlers.ofString());
-
-    } catch (Exception e) {
-      e.printStackTrace();
-    }
-
-    return response;
   }
 
   // private VehicleResponseDto convertToDto(HttpResponse<String> response) {
