@@ -10,7 +10,7 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
 
 public class JwtService {
-  private static final String SECRET = "secret-key";
+  private static final String SECRET = "your-ultra-secure-and-very-long-secret-key-here";
   private final SecretKey key;
 
   public JwtService() {
