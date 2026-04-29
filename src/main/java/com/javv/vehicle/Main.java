@@ -5,6 +5,7 @@ import java.net.InetSocketAddress;
 import java.sql.SQLException;
 
 import com.javv.vehicle.controller.AuthController;
+import com.javv.vehicle.controller.UserController;
 import com.javv.vehicle.controller.VehicleController;
 import com.javv.vehicle.service.DatabaseService;
 import com.sun.net.httpserver.HttpServer;
@@ -19,6 +20,7 @@ public class Main {
 
     server.createContext("/", new VehicleController());
     server.createContext("/auth", new AuthController());
+    server.createContext("/user", new UserController());
 
     server.setExecutor(null);
     System.out.println("Server started on port 8080...");
