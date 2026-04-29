@@ -5,6 +5,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.nio.charset.StandardCharsets;
 import java.sql.SQLException;
+import java.util.UUID;
 
 import com.javv.vehicle.domain.exception.ErrorResponse;
 import com.javv.vehicle.domain.user.User;
@@ -42,11 +43,10 @@ public class UserController implements HttpHandler {
 
       throwException(exchange, exception.getStatusCode(), response);
     } catch (SQLException exception) {
-      ErrorResponse errorResponse =
-          new ErrorResponse(exception.getStatusCode(), exception.getMessage());
+      ErrorResponse errorResponse = new ErrorResponse(400, exception.getMessage());
       String response = objectMapper.writeValueAsString(errorResponse);
 
-      throwException(exchange, exception.getStatusCode(), response);
+      throwException(exchange, 400, response);
     }
   }
 
@@ -56,11 +56,20 @@ public class UserController implements HttpHandler {
     UserRegister userRegister = objectMapper.readValue(requestBody, UserRegister.class);
 
     User user = new User();
+    user.setId(UUID.randomUUID());
     user.setName(userRegister.getName());
     user.setUsername(userRegister.getUsername());
     user.setHashedPassword(userService.hashPassword(userRegister.getPassword()));
 
     userRepository.saveUser(user);
+
+    String response = "User successfully created!";
+    exchange.getResponseHeaders().set("Content-Type", "application/json");
+    exchange.sendResponseHeaders(200, response.length());
+
+    try (OutputStream os = exchange.getResponseBody()) {
+      os.write(response.getBytes());
+    }
   }
 
   private void handleGet(HttpExchange exchange) throws IOException {}
