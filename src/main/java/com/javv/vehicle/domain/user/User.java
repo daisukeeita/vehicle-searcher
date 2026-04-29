@@ -1,15 +1,16 @@
 package com.javv.vehicle.domain.user;
 
+import java.util.UUID;
 
 public class User {
-  private String id;
+  private UUID id;
   private String name;
   private String username;
   private String hashedPassword;
 
   public User() {}
 
-  public void setId(String id) {
+  public void setId(UUID id) {
     this.id = id;
   }
 
@@ -25,7 +26,7 @@ public class User {
     this.hashedPassword = hashedPassword;
   }
 
-  public String getId() {
+  public UUID getId() {
     return id;
   }
 
