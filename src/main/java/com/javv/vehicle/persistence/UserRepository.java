@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.UUID;
 
 import com.javv.vehicle.domain.user.User;
 
@@ -41,7 +42,7 @@ public class UserRepository {
       try (ResultSet resultSet = preparedStatement.executeQuery()) {
         if (resultSet.next()) {
           User user = new User();
-          user.setId(resultSet.getString("id"));
+          user.setId(resultSet.getObject("id", UUID.class));
           user.setUsername(resultSet.getString("username"));
           user.setName(resultSet.getString("name"));
           user.setHashedPassword(resultSet.getString("hashed_password"));
